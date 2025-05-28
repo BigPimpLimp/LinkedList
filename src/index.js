@@ -1,4 +1,4 @@
-import './style.css';
+// import './style.css';
 
 console.log('Connected');
 
@@ -12,12 +12,18 @@ class linkedList {
     append(value) {
         const element = new node(value);
         if (!this.head) {
-            this.head = element.value;
+            this.head = element;
+            
         } else {
-            // this.tail.next = element.value;
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = element;
+            
+
         }
-        console.log(element.value);
-        console.log(this.head)
+        console.log(element);
         
     }
 
