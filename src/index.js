@@ -13,26 +13,57 @@ class linkedList {
         const element = new node(value);
         if (!this.head) {
             this.head = element;
+            this.size++;
             
         } else {
             let current = this.head;
-            while (current.next) {
-                current = current.next;
+            while (current.nextNode) {
+                current = current.nextNode;
             }
-            current.next = element;
-            
+            current.nextNode = element;
+            this.tail = element;
+            this.size++;
 
         }
-        console.log(element);
-        
     }
 
     prepend(value) {
-        
+        const element = new node(value);
+        if (!this.head) {
+            this.head = element;
+            this.size++;
+            
+        } else {
+            let oldhead = this.head
+            this.head = element;
+            let current = this.head;
+            current.nextNode = oldhead;
+            while (current.nextNode) {
+                current = current.nextNode;
+            }
+            current.nextNode = element;
+            this.tail = element;
+            this.size++;
+
+        }
     }
 
-    head() {
-        return this.head;
+    returnHead() {
+        return this.head.value;
+    }
+
+    returnTail() {
+        return this.tail.value;
+    }
+
+    toString() {
+        let string = `( ${this.head.value} )`;
+        let current = this.head;
+        while (current.nextNode) {
+            string += ` -> ( ${current.nextNode.value} )`;
+            current = current.nextNode;
+        }
+        return string;
     }
 }
 
@@ -41,11 +72,18 @@ class node {
         this.value = value;
         this.nextNode = nextNode;
     }
-
-
 }
 
 const list = new linkedList();
 
-list.append('cattttt');
-list.append('doggg')
+list.append('cat');
+list.append('dog');
+list.append('lizard');
+list.append('toad');
+list.append('dragon');
+list.append('mushroom');
+console.log('yooo')
+list.prepend('gyaatt')
+console.log(list.toString());
+console.log(list.returnTail());
+console.log(list.returnHead());
