@@ -99,6 +99,38 @@ class linkedList {
     }
     return string;
   }
+
+  insertAt(value, index) {
+    let current = this.head;
+    let prev;
+    let counter = 0;
+    while (current) {
+      if (counter === index) {
+        const element = new node(value, current);
+        prev.nextNode = element;
+        current = element;
+      }
+      prev = current;
+      current = current.nextNode;
+      counter++;
+    }
+  }
+
+  removeAt(index) {
+    let current = this.head;
+    let prev;
+    let counter = 0;
+    while (current) {
+      if (counter === index) {
+        current = current.nextNode;
+        prev.nextNode = current;
+      }
+      prev = current;
+      current = current.nextNode;
+      counter++;
+    }
+  }
+
 }
 
 class node {
@@ -121,8 +153,12 @@ list.prepend("bahahahah");
 list.pop();
 list.pop();
 console.log(list.toString());
-console.log(list.returnTail());
-console.log(list.returnHead());
-console.log(list.at(4));
-console.log(list.contains("toadasdfaf"));
-console.log(list.find("lizard"));
+list.insertAt('hippo', 3);
+console.log(list.toString());
+list.removeAt(1);
+console.log(list.toString());
+// console.log(list.returnTail());
+// console.log(list.returnHead());
+// console.log(list.at(4));
+// console.log(list.contains("toadasdfaf"));
+// console.log(list.find("lizard"));
